@@ -33,7 +33,7 @@ def tick_cb(_):
 lv.init()
 
 tick_dsc = lv.tick_dsc_t()
-lv.tick_set_cb(tick_dsc, tick_cb)
+lv.tick_set_cb(tick_dsc, tick_cb, None)
 
 disp = lv.sdl_window_create(800, 600)
 group = lv.group_create()
@@ -847,11 +847,13 @@ class knob_ctrl(lv.obj_t):
             knob_glow,
             self.__drag_event_handler,
             lv.EVENT_PRESSING,
+            None,
         )
         lv.obj_add_event(
             knob_img,
             self.__drag_event_handler,
             lv.EVENT_PRESSING,
+            None,
         )
         self._captured = False
 
@@ -1249,7 +1251,7 @@ class knob_ctrl(lv.obj_t):
 
         if self._tick_fade:
             if self._fade_timer is None:
-                self._fade_timer = lv.timer_create(self.__tick_fade, 1)
+                self._fade_timer = lv.timer_create(self.__tick_fade, 1, None)
 
         elif self._tick_match_value:
             for i, tick in enumerate(self._ticks):

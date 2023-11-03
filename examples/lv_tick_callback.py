@@ -33,7 +33,7 @@ def tick_cb(_):
 lv.init()
 
 tick_dsc = lv.tick_dsc_t()
-lv.tick_set_cb(tick_dsc, tick_cb)
+lv.tick_set_cb(tick_dsc, tick_cb, None)
 
 disp = lv.sdl_window_create(480, 320)
 group = lv.group_create()

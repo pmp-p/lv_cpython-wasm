@@ -24,14 +24,16 @@ def anim_x(a, v):
     lv.obj_set_x(label, v)
 
 
-anim = None
+anim_t = []
 
 
 def sw_event_cb(e, label):
-    global anim
+    global anim_t
     sw = lv.event_get_target_obj(e)
 
-    anim = lv.anim_t()
+    anim_t.append( lv.anim_t() )
+    anim = anim_t[-1]
+
     lv.anim_init(anim)
     lv.anim_set_var(anim, label)
     lv.anim_set_time(anim, 500)
@@ -55,7 +57,7 @@ lv.obj_set_pos(label, 100, 10)
 sw = lv.switch_create(lv.scr_act())
 lv.obj_center(sw)
 lv.obj_add_state(sw, lv.STATE_CHECKED)
-lv.obj_add_event(sw, lambda e: sw_event_cb(e, label), lv.EVENT_VALUE_CHANGED)
+lv.obj_add_event(sw, lambda e: sw_event_cb(e, label), lv.EVENT_VALUE_CHANGED, None)
 
 
 start = time.time()
